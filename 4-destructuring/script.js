@@ -34,6 +34,7 @@ function add2({type},...args) {
 }
 add(data.SEM_9217)
 add2(data.SEM_9217)
+
 const info = Object.values(data);
 for (let i = 0; i < info.length; i++) {
     const {dateDebut, dateFin, texte} = info[+i];
