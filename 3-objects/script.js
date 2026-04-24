@@ -42,11 +42,6 @@ Object.keys(bus).forEach((key) => {
         console.log(key + ": " + bus[key]);
     }
 })
-
-//old version
-Object.keys(bus).forEach((key) => {
-    console.log(key +": "+bus[key] );
-})
 */
 
 //3.2 Object.values
