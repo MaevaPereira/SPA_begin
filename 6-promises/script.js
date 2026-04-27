@@ -52,6 +52,7 @@ first()
  */
 
 //1.4
+/*
 first()
     .catch(function() {
       return secondWithError();
@@ -59,5 +60,42 @@ first()
     .then(function() {
       return third();
     });
+ */
 
-//SECTION 2 / 1.1
+//SECTION 2 / 2.1
+
+function human(){
+  return fetch("https://swapi.info/api/species/1")
+      .then((resolve) => resolve.json())
+      .then((json) => {console.log(json); return json;})
+      .catch((error) => console.error(error))
+}
+//human();
+
+//2.2
+
+function perso(){
+  return human()
+    .then((data) => {return fetch(data.people[0]);})
+    .then((resolve) => resolve.json())
+    .then ((json) => {console.log(json); return json;})
+}
+perso();
+
+//2.3
+function nom() {
+  return human()
+      .then((data) => {
+        return Promise.all(data.people.map((element) => fetch(element)));
+      })
+      .then((resolve) => {
+        return Promise.all(resolve.map((element) => element.json()));
+      })
+      .then((json) => {
+        const names = json.map((element) => element.name);
+        console.log(names)
+      })
+}
+nom();
+
+//SECTION 3 / 3.1
