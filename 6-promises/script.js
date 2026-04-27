@@ -20,7 +20,44 @@ function third() {
 function secondWithError() {
   return sleep(100).then(() => {throw new Error("catch me if you can");})
 }
-
+/*
 first();
 second();
 third();
+ */
+
+//SECTION 1 / 1.1
+//l'ordre des message => 300 ms donc le msg 1 s'affichera en dernier, le 2 en premier et le 3 en second
+
+//1.2
+/*
+first()
+    .then(function() {
+      return second();
+    })
+    .then(function() {
+      return third();
+    });
+ */
+
+//1.3
+/*
+first()
+    .then(function() {
+      return secondWithError();
+    })
+    .then(function() {
+      return third();
+    });
+ */
+
+//1.4
+first()
+    .catch(function() {
+      return secondWithError();
+    })
+    .then(function() {
+      return third();
+    });
+
+//SECTION 2 / 1.1
